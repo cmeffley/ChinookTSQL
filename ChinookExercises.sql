@@ -129,6 +129,14 @@ From Invoice i
 	ON c.SupportRepId = e.EmployeeId
 ) employ
 Group By employ.SupportRepId, employ.FirstName, employ.LastName
+--different method
+Select c.SupportRepId, e.FirstName, e.LastName, sum(i.Total) as [Total Sales]
+From Invoice i
+	JOIN Customer c
+	ON i.CustomerId = c.CustomerId
+	JOIN Employee e
+	ON c.SupportRepId = e.EmployeeId
+Group By c.SupportRepId, e.FirstName, e.LastName
 
 --19
 Select Top 1 employ.SupportRepId, employ.FirstName, employ.LastName, 
